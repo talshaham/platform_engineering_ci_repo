@@ -17,6 +17,6 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag talshaham/simple_weather_image:${{ github.run_id }}
     - name: Log in to Docker Hub
-      run: echo "tal123456" | docker login -u "talshaham" --password-stdin
+      run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
     - name: Push Docker image to Docker Hub
-      run: docker push talshaham/simple_weather_image:${{ github.run_id }}
+      run: docker push talshaham/simple_weather_image:${{ github.run_number }}
